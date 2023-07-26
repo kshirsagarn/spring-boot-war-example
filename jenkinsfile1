@@ -8,6 +8,7 @@ pipeline{
             steps{
                 // mvn test
                 sh "mvn test"
+                slackSend channel: 'jenkins_youtube', message: 'Slack Started.....'
                 echo "========executing A========"
             }
 
@@ -44,9 +45,11 @@ pipeline{
         }
         success{
             echo "========pipeline executed successfully ========"
+            slackSend channel: 'jenkins_youtube', message: 'Job Success.....'
         }
         failure{
             echo "========pipeline execution failed========"
+            slackSend channel: 'jenkins_youtube', message: 'Job Failed.....'
         }
     }
 }
